@@ -12,6 +12,7 @@ export const env = {
   allowedOrigins: [
     process.env.CLIENT_URL_1 || "http://localhost:3000",
     process.env.CLIENT_URL_2 || "http://localhost:5173",
-    process.env.REMOTE_ACCESS ||"http://127.0.0.1:3002"
+    process.env.REMOTE_ACCESS ||"http://127.0.0.1:3002",
+    
   ]
 };
