@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { userRepository } from "../repositories/user.repository.js";
+import { userRepository } from "../repositories/user.repository.ts";
 
 export async function login(req: Request, res: Response) {
   const { email, password } = req.body as { email?: string; password?: string };

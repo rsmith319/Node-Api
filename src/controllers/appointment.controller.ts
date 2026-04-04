@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { Appointment } from "../../entities/Appointment.js";
-import { AppointmentStatus } from "../enums/AppointmentStatus.js";
-import { appointmentRepository } from "../repositories/appointment.repository.js";
-import { userRepository } from "../repositories/user.repository.js";
+import { Appointment } from "../entities/Appointment.ts";
+import { AppointmentStatus } from "../enums/AppointmentStatus.ts";
+import { appointmentRepository } from "../repositories/appointment.repository.ts";
+import { userRepository } from "../repositories/user.repository.ts";
 
 export async function createAppointment(req: Request, res: Response) {
   try {

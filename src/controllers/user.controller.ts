@@ -1,7 +1,7 @@
 import "reflect-metadata"
 import { Request, Response } from "express";
-import { userRepository } from "@/repositories/user.repository.js";
-import { User } from "../../entities/User.js";
+import { userRepository } from "@/repositories/user.repository.ts";
+import { User } from "../entities/User.ts";
 
 export async function getAllUsers(_req: Request, res: Response) {
   try {

@@ -1,15 +1,17 @@
-import 'reflect-metadata'
-
-import app from "./app.js";
+import "reflect-metadata";
+import app from "./app.ts";
 import { AppDataSource } from "./data-source.js";
-import { env } from "./config/env.js"
+import { env } from "./config/env.js";
 
 async function startServer() {
   try {
+    console.log("Starting app...");
+    console.log("Initializing database...");
+
     await AppDataSource.initialize();
     console.log("Database connected successfully");
 
-    app.listen(env.port, "0.0.0.0", () => {
+    app.listen(env.port || 3000, "0.0.0.0", () => {
       console.log(`Server running on port ${env.port}`);
     });
   } catch (error) {
