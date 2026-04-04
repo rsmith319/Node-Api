@@ -14,5 +14,6 @@ export const env = {
     process.env.CLIENT_URL_2 || "http://localhost:5173",
     process.env.REMOTE_ACCESS ||"http://127.0.0.1:3002",
     
+    
   ]
 };
