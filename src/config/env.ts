@@ -13,6 +13,7 @@ export const env = {
     process.env.CLIENT_URL_1 || "http://localhost:3000",
     process.env.CLIENT_URL_2 || "http://localhost:5173",
     process.env.REMOTE_ACCESS ||"http://127.0.0.1:3002",
+    process.env.FRONTEND || "https://nice-coast-0d1e2a10f.2.azurestaticapps.net",
     
     
   ]
