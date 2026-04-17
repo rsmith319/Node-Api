@@ -37,7 +37,6 @@ export class User {
     enum: Role,
     default: Role.CUSTOMER,
     nullable: true,
-    
   })
   role!: Role;
 
