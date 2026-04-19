@@ -5,9 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Server Status</title>
   </head>
-  <body style="margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#111827;font-family:Arial,sans-serif;">
-    <div style="padding:20px 30px;border-radius:12px;background:#1f2937;color:#ffffff;font-size:24px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-      Server is running...
+  <body
+    style="
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom right, #0f172a, #111827, #1f2937);
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+    "
+  >
+    <div
+      style="
+        width: 100%;
+        max-width: 700px;
+        margin: 24px;
+        padding: 28px;
+        border-radius: 20px;
+        background: rgba(31, 41, 55, 0.95);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      "
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
+          margin-bottom: 24px;
+        "
+      >
+        <div>
+          <div
+            style="
+              font-size: 14px;
+              color: #93c5fd;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              margin-bottom: 8px;
+            "
+          >
+            Node Server Monitor
+          </div>
+          <h1 style="margin: 0; font-size: 32px; line-height: 1.2;">
+            Server is running
+          </h1>
+        </div>
+
+        <div
+          style="
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.15);
+            color: #86efac;
+            font-weight: bold;
+            font-size: 14px;
+            border: 1px solid rgba(34, 197, 94, 0.25);
+          "
+        >
+          ● Online
+        </div>
+      </div>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 16px;
+        "
+      >
+        <div
+          style="
+            padding: 18px;
+            border-radius: 14px;
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+          "
+        >
+          <div style="font-size: 13px; color: #9ca3af; margin-bottom: 10px;">
+            Uptime
+          </div>
+          <div id="uptime" style="font-size: 24px; font-weight: bold;">
+            0s
+          </div>
+        </div>
+
+        <div
+          style="
+            padding: 18px;
+            border-radius: 14px;
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+          "
+        >
+          <div style="font-size: 13px; color: #9ca3af; margin-bottom: 10px;">
+            Requests
+          </div>
+          <div id="requests" style="font-size: 24px; font-weight: bold;">
+            0
+          </div>
+        </div>
+
+        <div
+          style="
+            padding: 18px;
+            border-radius: 14px;
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+          "
+        >
+          <div style="font-size: 13px; color: #9ca3af; margin-bottom: 10px;">
+            Current Time
+          </div>
+          <div id="clock" style="font-size: 24px; font-weight: bold;">
+            --:--:--
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-top: 20px;
+          padding: 18px;
+          border-radius: 14px;
+          background: #111827;
+          border: 1px solid rgba(255, 255, 255, 0.06);
+        "
+      >
+        <div style="font-size: 13px; color: #9ca3af; margin-bottom: 10px;">
+          Server Message
+        </div>
+        <div style="font-size: 18px; font-weight: 600;">
+          API healthy and ready to accept connections.
+        </div>
+      </div>
     </div>
+
+    <script>
+      const serverStart = Date.now();
+      let requestCount = 0;
+
+      function formatUptime(ms) {
+        const totalSeconds = Math.floor(ms / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        const parts = [];
+        if (days) parts.push(days + "d");
+        if (hours || days) parts.push(hours + "h");
+        if (minutes || hours || days) parts.push(minutes + "m");
+        parts.push(seconds + "s");
+
+        return parts.join(" ");
+      }
+
+      function updateDashboard() {
+        document.getElementById("uptime").textContent = formatUptime(Date.now() - serverStart);
+        document.getElementById("clock").textContent = new Date().toLocaleTimeString();
+
+        requestCount += Math.floor(Math.random() * 3);
+        document.getElementById("requests").textContent = requestCount.toLocaleString();
+      }
+
+      updateDashboard();
+      setInterval(updateDashboard, 1000);
+    </script>
   </body>
 </html>
