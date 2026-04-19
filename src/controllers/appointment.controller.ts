@@ -172,3 +172,28 @@ export async function getAppointmentById(req: Request, res: Response) {
     });
   }
 }
+
+export async function updateAppointmentStatus(req: Request, res: Response) {
+  try {
+    const { id } = req.params as { id: string };
+    const { status } = req.body as { status: AppointmentStatus };
+
+    const appointment = await appointmentRepository.findOne({ where: { id } });
+
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    if (status !== undefined) {
+      appointment.status = status;
+    }
+
+    const updatedAppointment = await appointmentRepository.save(appointment);
+    return res.status(200).json(updatedAppointment);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Failed to update appointment status",
+      error,
+    });
+  }
+}
